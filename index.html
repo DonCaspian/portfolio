@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jiro Caspian C. Baluyot — IT Portfolio</title>
+<meta name="description" content="Portfolio of Jiro Caspian C. Baluyot, BS Information Technology student — web applications and software projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F8FA;
+    --surface:#FFFFFF;
+    --surface-alt:#EEF1F4;
+    --ink:#14213D;
+    --ink-muted:#5B6472;
+    --accent:#0F6E5E;
+    --accent-dark:#0B5548;
+    --accent-soft:#E4F1EE;
+    --amber:#C98A2C;
+    --amber-soft:#FBF1E1;
+    --border:#DDE2E8;
+    --radius:14px;
+    --max-w:1080px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{
+    font-family:'JetBrains Mono',monospace;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:0 28px;
+  }
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  /* NAV */
+  header.site-nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(247,248,250,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{
+    max-width:var(--max-w);
+    margin:0 auto;
+    padding:16px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .nav-mark{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    text-decoration:none;
+  }
+  .nav-mark .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--accent);
+    box-shadow:0 0 0 3px var(--accent-soft);
+  }
+  nav.links{
+    display:flex;
+    gap:28px;
+    font-size:14px;
+    font-weight:500;
+  }
+  nav.links a{
+    text-decoration:none;
+    color:var(--ink-muted);
+    transition:color .15s ease;
+  }
+  nav.links a:hover{color:var(--accent);}
+  @media (max-width:640px){
+    nav.links{display:none;}
+  }
+
+  /* HERO */
+  .hero{
+    padding:88px 0 56px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--accent-dark);
+    background:var(--accent-soft);
+    border:1px solid #CDE7DF;
+    padding:6px 12px;
+    border-radius:999px;
+    margin-bottom:22px;
+  }
+  .eyebrow .pulse{
+    width:7px;height:7px;border-radius:50%;
+    background:var(--accent);
+    animation:pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{opacity:1; transform:scale(1);}
+    50%{opacity:.4; transform:scale(1.3);}
+  }
+  .hero h1{
+    font-size:clamp(34px,5vw,52px);
+    font-weight:700;
+    line-height:1.08;
+    max-width:820px;
+  }
+  .hero h1 .accent-word{color:var(--accent);}
+  .hero p.lede{
+    margin-top:20px;
+    max-width:560px;
+    font-size:17px;
+    color:var(--ink-muted);
+  }
+  .hero-actions{
+    display:flex;
+    gap:14px;
+    margin-top:32px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 22px;
+    border-radius:10px;
+    font-size:14.5px;
+    font-weight:600;
+    text-decoration:none;
+    border:1px solid transparent;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn-primary{
+    background:var(--ink);
+    color:#fff;
+  }
+  .btn-primary:hover{background:var(--accent-dark); transform:translateY(-1px);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border-color:var(--border);
+  }
+  .btn-ghost:hover{border-color:var(--ink); transform:translateY(-1px);}
+
+  /* STATUS STRIP */
+  .status-strip{
+    margin-top:52px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    border-radius:var(--radius);
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:14px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-muted);
+  }
+  .status-strip .lights{
+    display:flex;
+    gap:6px;
+  }
+  .status-strip .lights span{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--accent);
+    opacity:.85;
+  }
+  .status-strip .lights span:nth-child(2){background:var(--amber);}
+  .status-strip .lights span:nth-child(3){background:#C4523E;}
+  .status-strip .stat{
+    display:flex;
+    gap:6px;
+    align-items:baseline;
+  }
+  .status-strip .stat b{
+    color:var(--ink);
+    font-size:14px;
+  }
+
+  /* SECTION HEADERS */
+  section{padding:64px 0;}
+  .section-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:var(--accent-dark);
+    letter-spacing:.04em;
+    text-transform:uppercase;
+    margin-bottom:10px;
+    display:block;
+  }
+  .section-title{
+    font-size:clamp(24px,3vw,32px);
+    font-weight:700;
+    margin-bottom:18px;
+  }
+
+  /* ABOUT */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:start;
+  }
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+  .about-grid p{color:var(--ink-muted); font-size:15.5px; margin:0 0 14px;}
+  .facts{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:24px;
+  }
+  .facts dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:12px 18px;}
+  .facts dt{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-muted);
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    padding-top:2px;
+  }
+  .facts dd{margin:0; font-size:14.5px; font-weight:500;}
+
+  /* SKILLS */
+  .skill-groups{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  @media (max-width:760px){
+    .skill-groups{grid-template-columns:1fr;}
+  }
+  .skill-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .skill-card h3{
+    font-size:14px;
+    font-family:'JetBrains Mono',monospace;
+    color:var(--ink-muted);
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    margin-bottom:14px;
+    font-weight:500;
+  }
+  .chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+  .chip{
+    font-size:13px;
+    font-weight:500;
+    background:var(--surface-alt);
+    border:1px solid var(--border);
+    padding:6px 12px;
+    border-radius:8px;
+  }
+
+  /* PROJECTS */
+  .projects-intro{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+  }
+  .projects-intro a{
+    font-size:14px;
+    font-weight:600;
+    color:var(--accent-dark);
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap;
+  }
+  .projects-intro a:hover{text-decoration:underline;}
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:22px;
+  }
+  @media (max-width:760px){
+    .project-grid{grid-template-columns:1fr;}
+  }
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:26px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    transition:box-shadow .2s ease, transform .2s ease;
+  }
+  .project-card:hover{
+    box-shadow:0 12px 28px -14px rgba(20,33,61,0.18);
+    transform:translateY(-2px);
+  }
+  .project-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+  }
+  .project-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--accent-dark);
+    background:var(--accent-soft);
+    padding:5px 10px;
+    border-radius:6px;
+    letter-spacing:.02em;
+  }
+  .project-icon{
+    width:38px;height:38px;
+    border-radius:9px;
+    background:var(--surface-alt);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .project-icon svg{width:20px; height:20px;}
+  .project-card h3{font-size:19px; font-weight:600;}
+  .project-card p{
+    margin:0;
+    font-size:14.5px;
+    color:var(--ink-muted);
+  }
+  .project-status{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--ink-muted);
+    display:flex;
+    align-items:center;
+    gap:6px;
+    margin-top:-4px;
+  }
+  .project-status .sdot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--accent);
+  }
+  .project-card .chip-row{margin-top:auto; padding-top:6px;}
+  .project-card .chip{font-size:12px; padding:4px 9px;}
+  .project-note{
+    font-size:12.5px;
+    color:var(--ink-muted);
+    border-top:1px dashed var(--border);
+    padding-top:12px;
+    margin-top:2px;
+  }
+
+  /* CONTACT */
+  .contact-card{
+    background:var(--ink);
+    color:#fff;
+    border-radius:20px;
+    padding:52px 44px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:30px;
+    flex-wrap:wrap;
+  }
+  .contact-card h2{
+    font-size:clamp(24px,3.2vw,34px);
+    max-width:420px;
+  }
+  .contact-card p{color:#B9C2D4; margin-top:10px; font-size:15px; max-width:420px;}
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  .contact-links a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:#fff;
+    font-size:14.5px;
+    font-weight:500;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.14);
+    padding:11px 18px;
+    border-radius:10px;
+    transition:background .15s ease, transform .15s ease;
+  }
+  .contact-links a:hover{background:rgba(255,255,255,0.14); transform:translateX(2px);}
+  .contact-links svg{width:17px; height:17px; flex-shrink:0;}
+
+  footer{
+    padding:30px 0 50px;
+    text-align:center;
+    font-size:13px;
+    color:var(--ink-muted);
+    font-family:'JetBrains Mono',monospace;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark"><span class="dot"></span>J. Baluyot</a>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero wrap">
+    <span class="eyebrow"><span class="pulse"></span>Open to internship &amp; junior dev opportunities</span>
+    <h1>Jiro Caspian C. Baluyot builds <span class="accent-word">full working systems</span>, not just interfaces.</h1>
+    <p class="lede">BS Information Technology student focused on PHP and Java applications — from database schema to the screens people actually use. Five systems shipped so far, covering retail, finance, services, logistics, and one arcade game for fun.</p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">View projects</a>
+      <a href="mailto:caspianbaluyot02@gmail.com" class="btn btn-ghost">Get in touch</a>
+    </div>
+
+    <div class="status-strip">
+      <div class="lights"><span></span><span></span><span></span></div>
+      <div class="stat mono">STATUS: <b>ACTIVELY BUILDING</b></div>
+      <div class="stat mono">TRACK: <b>BS INFORMATION TECHNOLOGY</b></div>
+      <div class="stat mono">SYSTEMS SHIPPED: <b>05</b></div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <span class="section-label">// About</span>
+    <h2 class="section-title">A systems-first approach to college projects</h2>
+    <div class="about-grid">
+      <div>
+        <p>Most of my coursework centers on building complete web applications rather than isolated exercises — schema design, server-side logic, and the front end all in one pass. That's meant a lot of time in PHP and MySQL, building the kind of transactional systems real businesses actually run on: bookings, accounts, inventory, payments.</p>
+        <p>I also step outside the browser when a project calls for it — my Java arcade game <em>Pateros Duckatch</em> was a chance to work with game loops, sprites, and local flavor instead of forms and databases.</p>
+        <p>I like projects with enough moving parts that they force real decisions: how to structure an admin panel, how to keep a booking system from double-booking a slot, how to make a login flow that isn't an afterthought.</p>
+      </div>
+      <div class="facts">
+        <dl>
+          <dt>Name</dt><dd>Jiro Caspian C. Baluyot</dd>
+          <dt>Course</dt><dd>BS Information Technology</dd>
+          <dt>Focus</dt><dd>Web application development</dd>
+          <dt>Core stack</dt><dd>PHP · MySQL · Java</dd>
+          <dt>Email</dt><dd><a href="mailto:caspianbaluyot02@gmail.com">caspianbaluyot02@gmail.com</a></dd>
+          <dt>GitHub</dt><dd><a href="https://github.com/DonCaspian" target="_blank" rel="noopener">github.com/DonCaspian</a></dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <span class="section-label">// Skills</span>
+    <h2 class="section-title">Technical toolkit</h2>
+    <div class="skill-groups">
+      <div class="skill-card">
+        <h3>Languages</h3>
+        <div class="chip-row">
+          <span class="chip">PHP</span>
+          <span class="chip">Java</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">SQL</span>
+          <span class="chip">HTML5</span>
+          <span class="chip">CSS3</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Frameworks &amp; Libraries</h3>
+        <div class="chip-row">
+          <span class="chip">Bootstrap</span>
+          <span class="chip">W3.CSS</span>
+          <span class="chip">PHPMailer</span>
+          <span class="chip">Font Awesome</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Tools &amp; Platforms</h3>
+        <div class="chip-row">
+          <span class="chip">MySQL</span>
+          <span class="chip">phpMyAdmin</span>
+          <span class="chip">Git &amp; GitHub</span>
+          <span class="chip">VS Code</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="projects-intro">
+      <div>
+        <span class="section-label">// Projects</span>
+        <h2 class="section-title" style="margin-bottom:0;">Systems I've built</h2>
+      </div>
+      <a href="https://github.com/DonCaspian" target="_blank" rel="noopener">See more on GitHub ↗</a>
+    </div>
+
+    <div class="project-grid">
+
+      <!-- E-COMMERCE -->
+      <article class="project-card">
+        <div class="project-top">
+          <span class="project-tag">WEB APP · RETAIL</span>
+          <div class="project-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          </div>
+        </div>
+        <h3>E-Commerce Platform</h3>
+        <div class="project-status"><span class="sdot"></span>customer &amp; admin sides complete</div>
+        <p>A full online store built from a reference template — customer accounts, wishlist, cart, and checkout on one side; product and order management on the other.</p>
+        <div class="chip-row">
+          <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">JavaScript</span><span class="chip">HTML/CSS</span>
+        </div>
+      </article>
+
+      <!-- BANKING -->
+      <article class="project-card">
+        <div class="project-top">
+          <span class="project-tag">WEB APP · FINANCE</span>
+          <div class="project-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="10" width="18" height="10" rx="1"></rect><path d="M3 10l9-6 9 6"></path><line x1="7" y1="14" x2="7" y2="17"></line><line x1="12" y1="14" x2="12" y2="17"></line><line x1="17" y1="14" x2="17" y2="17"></line></svg>
+          </div>
+        </div>
+        <h3>Online Banking Management System</h3>
+        <div class="project-status"><span class="sdot"></span>staff &amp; customer portals complete</div>
+        <p>A banking simulation covering fund transfers, beneficiary management, and account applications, with a separate staff portal for reviewing and approving customers.</p>
+        <div class="chip-row">
+          <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">JavaScript</span>
+        </div>
+      </article>
+
+      <!-- BEAUTECH -->
+      <article class="project-card">
+        <div class="project-top">
+          <span class="project-tag">WEB APP · SERVICES</span>
+          <div class="project-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          </div>
+        </div>
+        <h3>BeauTech — Salon Scheduling System</h3>
+        <div class="project-status"><span class="sdot"></span>original build</div>
+        <p>An appointment booking platform for a salon business, with automated email reminders, staff timeslot management, inventory tracking, and sales reporting for admins.</p>
+        <div class="chip-row">
+          <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">PHPMailer</span><span class="chip">JavaScript</span>
+        </div>
+      </article>
+
+      <!-- CAR RENTAL -->
+      <article class="project-card">
+        <div class="project-top">
+          <span class="project-tag">WEB APP · LOGISTICS</span>
+          <div class="project-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17h14M5 17a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm14 0a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM3 17V9l2-5h10l4 5v8"></path></svg>
+          </div>
+        </div>
+        <h3>Car Rental Management System</h3>
+        <div class="project-status"><span class="sdot"></span>customer &amp; staff sides complete</div>
+        <p>A rental platform built from a reference template, covering the full rental lifecycle — vehicle listings, bookings, driver assignment, billing, and returns.</p>
+        <div class="chip-row">
+          <span class="chip">PHP</span><span class="chip">MySQL</span><span class="chip">Bootstrap</span>
+        </div>
+      </article>
+
+      <!-- DUCKATCH -->
+      <article class="project-card" style="grid-column: span 2;">
+        <div class="project-top">
+          <span class="project-tag">DESKTOP · GAME</span>
+          <div class="project-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#0F6E5E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+          </div>
+        </div>
+        <h3>Pateros Duckatch</h3>
+        <div class="project-status"><span class="sdot"></span>playable build</div>
+        <p>A Java arcade game where players catch falling eggs while dodging obstacles, set against real landmarks from Pateros, Philippines — built as a break from web-app logic to work with sprites, game loops, and timing instead.</p>
+        <div class="chip-row">
+          <span class="chip">Java</span>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="contact-card">
+      <div>
+        <h2>Let's talk about an opportunity.</h2>
+        <p>Open to internships and junior developer roles. Reach out directly or check out more of my work on GitHub.</p>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:caspianbaluyot02@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><path d="M22 6l-10 7L2 6"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg>
+          caspianbaluyot02@gmail.com
+        </a>
+        <a href="https://github.com/DonCaspian" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.73.5.5 5.73.5 12a11.5 11.5 0 0 0 7.86 10.94c.58.1.79-.25.79-.56v-2c-3.2.7-3.87-1.36-3.87-1.36-.53-1.34-1.29-1.7-1.29-1.7-1.05-.72.08-.7.08-.7 1.17.08 1.78 1.2 1.78 1.2 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.68 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.39-5.25 5.67.41.36.78 1.07.78 2.16v3.2c0 .31.21.67.8.56A11.5 11.5 0 0 0 23.5 12C23.5 5.73 18.27.5 12 .5z"></path></svg>
+          github.com/DonCaspian
+        </a>
+        <a href="https://www.linkedin.com/in/jiro-baluyot-5a32a62a3/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.27zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45z"></path></svg>
+          linkedin.com/in/jiro-baluyot
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Jiro Caspian C. Baluyot · Built with HTML, CSS &amp; a lot of PHP
+</footer>
+
+</body>
+</html>
